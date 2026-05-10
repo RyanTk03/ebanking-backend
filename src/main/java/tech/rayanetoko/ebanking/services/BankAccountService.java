@@ -1,9 +1,6 @@
 package tech.rayanetoko.ebanking.services;
 
-import tech.rayanetoko.ebanking.dtos.BankAccountDTO;
-import tech.rayanetoko.ebanking.dtos.CurrentBankAccountDTO;
-import tech.rayanetoko.ebanking.dtos.CustomerDTO;
-import tech.rayanetoko.ebanking.dtos.SavingBankAccountDTO;
+import tech.rayanetoko.ebanking.dtos.*;
 import tech.rayanetoko.ebanking.exceptions.BalanceNotSufficientException;
 import tech.rayanetoko.ebanking.exceptions.BankAccountNotFoundException;
 import tech.rayanetoko.ebanking.exceptions.CustomerNotFoundException;
@@ -27,4 +24,16 @@ public interface BankAccountService {
     void transfer(String accountIdSource, String accountIdDestination, double amount) throws BankAccountNotFoundException, BalanceNotSufficientException;
 
     List<BankAccountDTO> bankAccountList();
+
+    CustomerDTO getCustomer(Long customerId) throws CustomerNotFoundException;
+
+    CustomerDTO updateCustomer(CustomerDTO customerDTO);
+
+    void deleteCustomer(Long customerId);
+
+    List<AccountOperationDTO> accountHistory(String accountId);
+
+    AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws BankAccountNotFoundException;
+
+    List<CustomerDTO> searchCustomers(String keyword);
 }
